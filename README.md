@@ -9,7 +9,7 @@ Esse robô converte a moeda base para a moeda final. O usuário deve primeiro es
 uma das opções apresentadas pelo robô e em seguida será feito a conversão.
 
 ## 💻Tecnologias
-As tecnologias utilizadas nesse projeto foram: 
--[Node](https://nodejs.org/pt-br/)
--[Puppetteer](https://pptr.dev/)
+As tecnologias utilizadas nesse projeto foram: <br>
+-[Node](https://nodejs.org/pt-br/)<br>
+-[Puppetteer](https://pptr.dev/)<br>
 -[Readline-sync](https://www.npmjs.com/package/readline-sync)
