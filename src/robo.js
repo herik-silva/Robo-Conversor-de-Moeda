@@ -2,7 +2,7 @@ const puppeter = require('puppeteer');
 const readline = require('readline-sync');
 
 async function conversao(){
-    console.log("Robo Conversor de Moeda V0.1");
+    console.log("Robo Conversor de Moeda");
     console.log("1-Real para Dolar");
     console.log("2-Dolar para Real");
     console.log("0-Fechar Programa");
@@ -36,7 +36,7 @@ async function robo(moedaBase, moedaFinal){
     var opcao = await conversao();
     switch(opcao){
         case "0":
-            console.log("Obrigado por utilizar o Robo Conversor de Moeda V0.1");
+            console.log("Obrigado por utilizar o Robo Conversor de Moeda");
             break;
         case "1":
             await robo("real","dolar");
