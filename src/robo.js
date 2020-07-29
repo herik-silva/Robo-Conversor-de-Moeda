@@ -5,36 +5,45 @@ const robo = {
     conversao: require('./robos/conversao.js')
 }
 
+var navegador={
+    browser: null,
+    page: null
+};
+
 async function inciarRobo(){
     var opcao =  robo.input();
     
     switch(opcao){
         case "0":
             console.log("Obrigado por utilizar o Robo Conversor de Moeda");
+            if(navegador.browser != null){
+                navegador.browser.close();
+            }
             break;
         case "1":
-            await iniciarConversao("real","dolar").catch("Tempo limite expirado!");
+            await iniciarConversao("real","dolar");
             break;
         case "2":
-            await iniciarConversao("dolar","real").catch("Tempo limite expirado!");
+            await iniciarConversao("dolar","real");
             break;
         default:
             console.log("Opcao invalida!");
-            await iniciarRobo();
+            await inciarRobo();
             break;
     }
 }
 
 async function iniciarConversao(moedaBase, moedaFinal){
-    const valor_moeda_final = await robo.pesquisar(moedaBase,moedaFinal);
-
+    const pesquisa = await robo.pesquisar(moedaBase,moedaFinal,navegador);
+    const valor_moeda_final = pesquisa[0];
+    navegador = pesquisa[1];
     console.log("------ Conversão de Moeda ------");
     console.log(`Atualmente 1 ${moedaBase} vale ${valor_moeda_final} em ${moedaFinal}`);
     console.log("--------------------------------");
     const valor_conversao = robo.conversao();
     const valor_convertido = robo.calcular(valor_conversao, valor_moeda_final);
     console.log(`${valor_conversao} ${moedaBase} -> ${valor_convertido} ${moedaFinal}`);
-    await start();
+    await inciarRobo();
 }
 
 start();
