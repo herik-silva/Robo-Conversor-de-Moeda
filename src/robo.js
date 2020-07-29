@@ -1,5 +1,3 @@
-const puppeteer = require('puppeteer');
-
 const robo = {
     input: require('./robos/input.js'),
     pesquisar: require('./robos/pesquisar.js'),
@@ -19,19 +17,18 @@ async function inciarRobo(){
         case "0":
             console.log("Obrigado por utilizar o Robo Conversor de Moeda");
             if(navegador.browser != null){
-                console.log(typeof navegador.browser);
                 navegador.browser.close();
             }
             break;
         case "1":
-            await iniciarConversao("real","dolar").catch("Tempo limite expirado!");
+            await iniciarConversao("real","dolar");
             break;
         case "2":
-            await iniciarConversao("dolar","real").catch("Tempo limite expirado!");
+            await iniciarConversao("dolar","real");
             break;
         default:
             console.log("Opcao invalida!");
-            await iniciarRobo();
+            await inciarRobo();
             break;
     }
 }
@@ -46,7 +43,7 @@ async function iniciarConversao(moedaBase, moedaFinal){
     const valor_conversao = robo.conversao();
     const valor_convertido = robo.calcular(valor_conversao, valor_moeda_final);
     console.log(`${valor_conversao} ${moedaBase} -> ${valor_convertido} ${moedaFinal}`);
-    await start();
+    await inciarRobo();
 }
 
 start();
