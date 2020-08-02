@@ -10,26 +10,18 @@ var navegador={
     page: null
 };
 
-async function inciarRobo(){
-    var opcao =  robo.input();
-    
-    switch(opcao){
-        case "0":
-            console.log("Obrigado por utilizar o Robo Conversor de Moeda");
-            if(navegador.browser != null){
-                navegador.browser.close();
-            }
-            break;
-        case "1":
-            await iniciarConversao("real","dolar");
-            break;
-        case "2":
-            await iniciarConversao("dolar","real");
-            break;
-        default:
-            console.log("Opcao invalida!");
-            await inciarRobo();
-            break;
+async function iniciarRobo(){
+    const moedas =  robo.input();
+    if(moedas!=null){
+        await iniciarConversao(moedas[0],moedas[1]);
+        await iniciarRobo();
+    }
+    else{
+        console.log("Obrigado por utilizar o Robo Conversor de Moedas!");
+        if(navegador.browser != null){
+            navegador.browser.close();
+        }
+        return 0;
     }
 }
 
@@ -37,17 +29,12 @@ async function iniciarConversao(moedaBase, moedaFinal){
     const pesquisa = await robo.pesquisar(moedaBase,moedaFinal,navegador);
     const valor_moeda_final = pesquisa[0];
     navegador = pesquisa[1];
-    console.log("------ Conversão de Moeda ------");
+    console.log("\n------ Conversão de Moeda ------");
     console.log(`Atualmente 1 ${moedaBase} vale ${valor_moeda_final} em ${moedaFinal}`);
-    console.log("--------------------------------");
+    console.log("--------------------------------\n");
     const valor_conversao = robo.conversao();
     const valor_convertido = robo.calcular(valor_conversao, valor_moeda_final);
-    console.log(`${valor_conversao} ${moedaBase} -> ${valor_convertido} ${moedaFinal}`);
-    await inciarRobo();
+    console.log(`${valor_conversao} ${moedaBase} -> ${valor_convertido} ${moedaFinal}\n`);
 }
 
-start();
-
-async function start(){
-    await inciarRobo();
-}
+iniciarRobo();
