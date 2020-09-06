@@ -9,7 +9,7 @@ async function getMoedaFinal(pagina){
 
 async function pesquisar(moedaBase, moedaFinal,navegador){
     if(navegador.browser == null){
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({headless: true});
         const page = await browser.newPage();
         await page.goto(`https://www.google.com/search?q=${moedaBase}+para+${moedaFinal}&oq=${moedaBase}+para+${moedaFinal}&aqs=chrome..69i57.3363j0j7&sourceid=chrome&ie=UTF-8`);
         const navegador_aberto = {
