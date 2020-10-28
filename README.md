@@ -11,5 +11,5 @@ uma das opções apresentadas pelo robô e em seguida será feito a conversão.
 ## 💻Tecnologias
 As tecnologias utilizadas nesse projeto foram: <br>
 -[Node](https://nodejs.org/pt-br/)<br>
--[Puppetteer](https://pptr.dev/)<br>
+-[Puppeteer](https://pptr.dev/)<br>
 -[Readline-sync](https://www.npmjs.com/package/readline-sync)
